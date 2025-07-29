@@ -1,20 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Load data from CSV
-samples = np.loadtxt("clap.csv", delimiter=",")
+# Load data from CSV (skip header row)
+data = np.genfromtxt("audio_data.csv", delimiter=",", skip_header=1)
 
-# Generate time axis (in seconds)
-sample_rate = 16000  # Hz
-duration = len(samples) / sample_rate
-time_axis = np.linspace(0, duration, len(samples))
+# Separate columns
+timestamps = data[:, 0]
+pitches = data[:, 1]
 
 # Plot
 plt.figure(figsize=(12, 4))
-plt.plot(time_axis, samples, linewidth=0.5)
+plt.plot(timestamps, pitches, linewidth=0.5)
 plt.title("Audio Waveform")
 plt.xlabel("Time (s)")
-plt.ylabel("Amplitude")
+plt.ylabel("Pitch (Amplitude)")
 plt.grid(True)
 plt.tight_layout()
 plt.show()
