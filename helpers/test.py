@@ -36,6 +36,8 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
+print("Expected shape:", input_details[0]['shape'])
+
 # --- Run Inference
 interpreter.set_tensor(input_details[0]['index'], np.array([input_features]))
 interpreter.invoke()
