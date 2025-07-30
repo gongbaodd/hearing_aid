@@ -1,26 +1,37 @@
 import serial
 import csv
-import time
 
-ser = serial.Serial('COM5', 9600)  # Replace with your port
+# === Config ===
+sample_rate = 1000  # Hz, must match Arduino
+duration_seconds = 12
+total_samples = duration_seconds * sample_rate
+
+# === Setup serial and file ===
+ser = serial.Serial('COM5', 115200, timeout=1)  # timeout prevents hanging
 output_file = open('output.csv', 'w', newline='')
 writer = csv.writer(output_file)
-
-# Write CSV header
 writer.writerow(["timestamp", "pitch"])
 
-start_time = time.time()
-duration = 10  # seconds
+# === Collect ===
+sample_index = 0
 
 try:
-    while time.time() - start_time < duration:
+    while sample_index < total_samples:
         line = ser.readline().decode('utf-8').strip()
-        timestamp = time.time() - start_time  # relative time in seconds
-        print(f"{timestamp:.4f}, {line}")
-        writer.writerow([timestamp, line])
+
+        # Check if the line is a valid number
+        try:
+            value = int(line)
+            timestamp = sample_index / sample_rate
+            writer.writerow([f"{timestamp:.6f}", value])
+            print(f"{timestamp:.6f}, {value}")
+            sample_index += 1
+        except ValueError:
+            # Skip invalid/non-integer lines silently
+            continue
 except Exception as e:
     print("Error:", e)
 finally:
     output_file.close()
     ser.close()
-    print("Data collection complete.")
+    print(f"✅ Collected {sample_index} samples in {duration_seconds}s. Done.")
