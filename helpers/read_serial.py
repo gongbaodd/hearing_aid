@@ -2,7 +2,7 @@ import serial
 import csv
 import time
 
-ser = serial.Serial('COM3', 9600)  # Replace with your port
+ser = serial.Serial('COM5', 9600)  # Replace with your port
 output_file = open('output.csv', 'w', newline='')
 writer = csv.writer(output_file)
 
@@ -10,7 +10,7 @@ writer = csv.writer(output_file)
 writer.writerow(["timestamp", "pitch"])
 
 start_time = time.time()
-duration = 2  # seconds
+duration = 10  # seconds
 
 try:
     while time.time() - start_time < duration:

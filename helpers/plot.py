@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load data from CSV (skip header row)
-data = np.genfromtxt("audio_data.csv", delimiter=",", skip_header=1)
+data = np.genfromtxt("output.csv", delimiter=",", skip_header=1)
 
 # Separate columns
 timestamps = data[:, 0]
