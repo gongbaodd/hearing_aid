@@ -97,7 +97,9 @@ void loop() {
 
   if (digitalRead(BUTTON_PIN) == HIGH) {
     isStopped = true;
+    isVibrating = false;
     stoppedTime = millis();
+    digitalWrite(VIBRATE_PIN, LOW);
     return;  // user tap stop button
   }
 
@@ -141,6 +143,10 @@ void loop() {
     isVibrating = true;
   }
 
+  handleVibrating();
+}
+
+void handleVibrating() {
   // decide vibrating
   if (isVibrating) {
     vibratingTime = millis();
