@@ -15,14 +15,14 @@
  */
 
 /* Includes ---------------------------------------------------------------- */
-#include <microphone_inferencing.h>
+#include <esp32_inferencing.h>
 
 
 #define AUDIO_PIN 7
 #define SAMPLE_RATE 16000
 #define SAMPLE_INTERVAL_US (1000000 / SAMPLE_RATE)
 
-static unsigned int const FEATURES_COUNT = 15873;
+static unsigned int const FEATURES_COUNT = 3846;
 static float features[FEATURES_COUNT];
 
 /**
