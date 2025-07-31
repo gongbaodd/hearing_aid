@@ -3,7 +3,7 @@ import csv
 
 # === Config ===
 sample_rate = 1000  # Hz, must match Arduino
-duration_seconds = 20
+duration_seconds = 40
 total_samples = duration_seconds * sample_rate
 
 # === Setup serial and file ===
