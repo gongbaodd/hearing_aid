@@ -3,11 +3,11 @@ import csv
 
 # === Config ===
 sample_rate = 1000  # Hz, must match Arduino
-duration_seconds = 12
+duration_seconds = 20
 total_samples = duration_seconds * sample_rate
 
 # === Setup serial and file ===
-ser = serial.Serial('COM5', 115200, timeout=1)  # timeout prevents hanging
+ser = serial.Serial('COM6', 115200, timeout=1)  # timeout prevents hanging
 output_file = open('output.csv', 'w', newline='')
 writer = csv.writer(output_file)
 writer.writerow(["timestamp", "pitch"])

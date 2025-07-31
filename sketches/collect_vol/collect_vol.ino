@@ -1,4 +1,6 @@
-#define AUDIO_PIN 20
+
+
+#define AUDIO_PIN 2
 #define SAMPLE_RATE 16000 
 #define SAMPLE_INTERVAL_US (1000000 / SAMPLE_RATE) 
 
@@ -15,4 +17,5 @@ void loop() {
     int audioValue = analogRead(AUDIO_PIN);
     Serial.println(audioValue); 
   }
+
 }

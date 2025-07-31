@@ -38,12 +38,8 @@ void displaySiren() {
 
 }
 
-void setup() {
-    display.init();
-}
-
-void loop() {
-    display.clear();
+void displayPhone() {
+        display.clear();
 
     display.drawXbm(0, 0, 60, 60, telephone_bits);
     display.setTextAlignment(TEXT_ALIGN_RIGHT);
@@ -51,5 +47,13 @@ void loop() {
     int y = display.height()-12;
     display.drawString(x, y, "Baby Crying");
     display.display();
+}
 
+void setup() {
+    display.init();
+}
+
+void loop() {
+
+    displayBabyCrying();
 }
